@@ -45,11 +45,12 @@ const createWindow = (): void => {
   }
 
   // window.webContents.openDevTools()
+
+  ipc();
 };
 
 app.whenReady().then((): void => {
   createWindow();
-  ipc();
 
   app.on('activate', (): void => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
