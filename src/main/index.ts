@@ -14,7 +14,7 @@ program
   .parse(process.argv, { from: 'electron' });
 
 // ---
-nativeTheme.themeSource = settings.get('color_scheme');
+nativeTheme.themeSource = settings.get('theme_source');
 
 // ---
 const createWindow = (): void => {

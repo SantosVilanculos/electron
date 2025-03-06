@@ -9,11 +9,6 @@ export const settings = new ElectronStore<ElectronStoreType>({
       type: 'boolean',
       default: false
     },
-    color_scheme: {
-      type: 'string',
-      enum: ['system', 'light', 'dark'],
-      default: 'system'
-    },
     font_family: {
       type: 'object',
       properties: {
@@ -33,6 +28,11 @@ export const settings = new ElectronStore<ElectronStoreType>({
       type: 'number',
       minimum: 0,
       default: 16
+    },
+    theme_source: {
+      type: 'string',
+      enum: ['system', 'light', 'dark'],
+      default: 'system'
     }
   },
   watch: true
@@ -50,14 +50,14 @@ settings.onDidChange('always_on_top', (newValue, _) => {
 });
 
 // ---
-settings.onDidChange('color_scheme', (newValue, _) => {
+settings.onDidChange('theme_source', (newValue, _) => {
   if (newValue === undefined || newValue === nativeTheme.themeSource) return;
 
   nativeTheme.themeSource = newValue;
 });
 
 nativeTheme.on('updated', () => {
-  if (settings.get('color_scheme') === nativeTheme.themeSource) return;
+  if (settings.get('theme_source') === nativeTheme.themeSource) return;
 
-  settings.set('color_scheme', nativeTheme.themeSource);
+  settings.set('theme_source', nativeTheme.themeSource);
 });

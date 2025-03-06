@@ -8,15 +8,6 @@
       "type": "boolean",
       "default": false
     },
-    "color_scheme": {
-      "description": "",
-      "enum": [
-        "system",
-        "light",
-        "dark"
-      ],
-      "default": "system"
-    },
     "font_family": {
       "type": "object",
       "properties": {
@@ -33,6 +24,15 @@
         "monospace": "GitLab Mono",
         "sans_serif": "GitLab Sans"
       }
+    },
+    "theme_source": {
+      "description": "",
+      "enum": [
+        "system",
+        "light",
+        "dark"
+      ],
+      "default": "system"
     }
   }
 }

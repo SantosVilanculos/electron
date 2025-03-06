@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "always_on_top": false,
+  "font_family": {
+    "monospace": "GitLab Mono",
+    "sans_serif": "GitLab Sans"
+  },
+  "theme_source": "system"
+}

@@ -115,16 +115,16 @@ const { shell } = window.electron;
           </div>
 
           <div class="">
-            <label class="block text-sm/6 font-medium text-nowrap text-gray-900 dark:text-zinc-300" for="color_scheme">
-              Color scheme
+            <label class="block text-sm/6 font-medium text-nowrap text-gray-900 dark:text-zinc-300" for="theme_source">
+              Theme source
             </label>
 
             <div class="mt-1.5">
               <div class="grid shrink-0 grid-cols-1 focus-within:relative focus-within:isolate">
                 <select
-                  v-model="$state.color_scheme"
+                  v-model="$state.theme_source"
                   class="col-start-1 row-start-1 w-full min-w-0 appearance-none rounded-md bg-white py-1.5 pr-7 pl-3 text-sm/6 text-gray-500 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-zinc-950 dark:text-zinc-300 dark:outline-zinc-50/12"
-                  id="color_scheme"
+                  id="theme_source"
                 >
                   <option value="system">system</option>
                   <option value="light">light</option>

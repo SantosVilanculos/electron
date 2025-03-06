@@ -7,7 +7,7 @@ export type ElectronStore = {
   };
   font_size: number;
   always_on_top: boolean;
-  color_scheme: typeof nativeTheme.themeSource;
+  theme_source: typeof nativeTheme.themeSource;
 };
 
 export interface ElectronAPI {
