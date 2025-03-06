@@ -1,4 +1,4 @@
-import type { ElectronAPI, IPC } from './../common/preload.d.ts';
+import type { ElectronAPI } from './../common/preload.d.ts';
 
 declare global {
   interface Window {
