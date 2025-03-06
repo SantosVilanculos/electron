@@ -1,6 +1,6 @@
 import { BrowserWindow, ipcMain, shell } from 'electron';
 import { settings } from './settings.ts';
-import { ElectronStore } from '../common/preload.js';
+import { ElectronStore } from './../common/preload.js';
 
 export const ipc = () => {
   // ---
@@ -17,7 +17,15 @@ export const ipc = () => {
   });
   ipcMain.handle('get', (_, key) => settings.get(key));
   ipcMain.handle('set', (_, key, value) => settings.set(key, value));
-  ipcMain.handle('open_in_editor', () => settings.openInEditor());
+  ipcMain.on('open_in_editor', async event => {
+    try {
+      await settings.openInEditor();
+      event.returnValue = true;
+    } catch (_) {
+      event.returnValue = false;
+    }
+  });
+  ipcMain.handle('clear', _ => settings.clear());
 
   // ---
   ipcMain.handle('shell_show_item_in_folder', (_, path) => shell.showItemInFolder(path));

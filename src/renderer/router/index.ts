@@ -10,8 +10,19 @@ const router = createRouter({
     },
     {
       path: '/settings',
-      name: 'settings',
-      component: () => import('./../views/pages/settings.vue')
+      component: () => import('./../views/layouts/settings.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'settings',
+          component: () => import('./../views/pages/settings/index.vue')
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('./../views/pages/settings/about.vue')
+        }
+      ]
     }
   ]
 });
