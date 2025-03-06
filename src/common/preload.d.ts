@@ -21,7 +21,7 @@ export interface ElectronAPI {
     getItem: <Key extends keyof ElectronStore>(key: Key) => Promise<ElectronStore[Key]>;
     setItem: <Key extends keyof ElectronStore>(key: Key, value?: ElectronStore[Key]) => Promise<void>;
     removeItem: <Key extends keyof ElectronStore>(key: Key) => Promise<void>;
-    reset: <Key extends keyof ElectronStore>(keys: Array<Key>) => Promise<void>;
+    reset: <Key extends keyof ElectronStore>(keys: Key[]) => Promise<void>;
     clear: () => Promise<void>;
     openInEditor: () => Promise<boolean>;
     onDidChange: <Key extends keyof ElectronStore>(key: Key, callback: (value: ElectronStore[Key]) => void) => void;
