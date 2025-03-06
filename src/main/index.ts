@@ -39,7 +39,7 @@ const createWindow = (): void => {
   window.setMenuBarVisibility(false);
 
   if (process.env.NODE_ENV === 'development') {
-    window.loadURL('http://localhost:5173');
+    window.loadURL('http://127.0.0.1:5173');
   } else {
     window.loadFile(join(app.getAppPath(), '/dist/renderer/index.html'));
   }
