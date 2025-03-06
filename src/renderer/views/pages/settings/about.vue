@@ -31,8 +31,12 @@ const { chrome_version, electron_version, node_version, v8_version } = window.el
     </div>
 
     <div class="">
-      <a v-on:click.prevent="" href="#" class="flex h-12 items-center justify-between px-5">
-        <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">Legal</label>
+      <a
+        v-on:click.prevent=""
+        href="#"
+        class="flex h-12 items-center justify-between px-5 text-zinc-600 dark:text-zinc-300"
+      >
+        <label class="text-sm/6 text-nowrap" for="">Legal</label>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +57,12 @@ const { chrome_version, electron_version, node_version, v8_version } = window.el
         </svg>
       </a>
 
-      <a v-on:click.prevent="" href="#" class="flex h-12 items-center justify-between px-5">
-        <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">Report an issue</label>
+      <a
+        v-on:click.prevent=""
+        href="#"
+        class="flex h-12 items-center justify-between px-5 text-zinc-600 dark:text-zinc-300"
+      >
+        <label class="text-sm/6 text-nowrap" for="">Report an issue</label>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
