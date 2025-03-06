@@ -1,4 +1,3 @@
-// https://www.electronjs.org/docs/latest/tutorial/ipc
 import { contextBridge, ipcRenderer } from 'electron';
 import type { ElectronAPI, IPC } from './../common/preload.d.ts';
 
@@ -24,9 +23,14 @@ contextBridge.exposeInMainWorld('ipc', {
     set: (key, value) => ipcRenderer.invoke('set', key, value),
     get: key => ipcRenderer.invoke('get', key),
     open_in_editor: () => ipcRenderer.invoke('open_in_editor'),
-    on_did_change: (key, callback) => ipcRenderer.on(`on_did_change:${key}`, (_, value) => callback(value))
+    on_did_change: (key, callback) => {
+      ipcRenderer.on('on_did_any_change', (_, _key, value) => {
+        if (key === _key) callback(value);
+        console.log(key);
+        console.log(value);
+      });
+    }
   },
-
   environment: {
     mode: process.env.NODE_ENV!,
 

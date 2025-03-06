@@ -1,5 +1,7 @@
 import ElectronStore from 'electron-store';
 import type { ElectronStore as ElectronStoreType } from './../common/preload.d.ts';
+import { BrowserWindow } from 'electron/main';
+import { nativeTheme } from 'electron';
 
 export const settings = new ElectronStore<ElectronStoreType>({
   schema: {
@@ -34,4 +36,28 @@ export const settings = new ElectronStore<ElectronStoreType>({
     }
   },
   watch: true
+});
+
+// ---
+settings.onDidChange('always_on_top', (newValue, _) => {
+  if (newValue === undefined) return;
+
+  BrowserWindow.getAllWindows().forEach(window => {
+    if (newValue === window.isAlwaysOnTop()) return;
+
+    window.setAlwaysOnTop(newValue);
+  });
+});
+
+// ---
+settings.onDidChange('color_scheme', (newValue, _) => {
+  if (newValue === undefined || newValue === nativeTheme.themeSource) return;
+
+  nativeTheme.themeSource = newValue;
+});
+
+nativeTheme.on('updated', () => {
+  if (settings.get('color_scheme') === nativeTheme.themeSource) return;
+
+  settings.set('color_scheme', nativeTheme.themeSource);
 });
