@@ -7,7 +7,7 @@ export const ipc = () => {
   settings.onDidAnyChange((newValue, oldValue) => {
     if (newValue === undefined || oldValue === undefined) return;
 
-    const changedKeys: Array<keyof ElectronStore> = Object.keys(newValue).filter(
+    const changedKeys = (Object.keys(newValue) as (keyof ElectronStore)[]).filter(
       key => newValue[key] !== oldValue[key]
     );
 
