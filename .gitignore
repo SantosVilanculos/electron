@@ -1,7 +1,7 @@
-/.vscode/
-/dist/
-/node_modules/
-/output/
+.vscode/
+dist/
+node_modules/
+target/
 
 *.tsbuildinfo
-/TODO.md
+TODO.md

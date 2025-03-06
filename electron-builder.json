@@ -1,23 +1,23 @@
 {
-  "$schema": "https://json.schemastore.org/electron-builder.json",
+  "$schema": "http://json.schemastore.test/electron-builder.json",
   "appId": "io.github.santosvilanculos.electron",
   "productName": "Electron",
   "files": [
     {
-      "from": "./build/icon.png",
-      "to": "./dist/icon.png"
+      "from": "build/icon.png",
+      "to": "dist/icon.png"
     },
-    "./dist",
-    "./package.json"
+    "dist",
+    "package.json"
   ],
-  "icon": "./build/icon.png",
+  "icon": "build/icon.png",
   "directories": {
-    "buildResources": "./build",
-    "output": "./output"
+    "buildResources": "build",
+    "output": "target"
   },
   "asar": true,
   "appImage": {
-    "license": "./LICENSE"
+    "license": "LICENSE"
   },
   "linux": {
     "target": "AppImage",
@@ -27,7 +27,7 @@
     "target": "dmg"
   },
   "nsis": {
-    "license": "./LICENSE"
+    "license": "LICENSE"
   },
   "win": {
     "target": "nsis"
