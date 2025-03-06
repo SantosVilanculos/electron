@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import { defineStore } from 'pinia';
-import type { ElectronStore } from '../../common/preload';
+import type { ElectronStore } from './../../types';
 
 export const useSettingsStore = defineStore('config', () => {
   const { settings } = window.electron;

@@ -1,5 +1,5 @@
 import ElectronStore from 'electron-store';
-import type { ElectronStore as ElectronStoreType } from './../types/index.ts';
+import type { ElectronStore as ElectronStoreType } from './../types';
 import { BrowserWindow } from 'electron/main';
 import { nativeTheme } from 'electron';
 

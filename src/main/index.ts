@@ -1,8 +1,8 @@
-import { app, BrowserWindow, nativeImage, nativeTheme, DefaultFontFamily } from 'electron';
+import { app, BrowserWindow, nativeImage, nativeTheme } from 'electron';
 import { join } from 'node:path';
 import { program } from 'commander';
-import { ipc } from './ipc.ts';
-import { settings } from './settings.ts';
+import { ipc } from './ipc';
+import { settings } from './settings';
 
 // ---
 program

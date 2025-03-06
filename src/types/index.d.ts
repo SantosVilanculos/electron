@@ -1,4 +1,4 @@
-import { nativeTheme, shell } from 'electron';
+import type { nativeTheme, shell } from 'electron';
 
 export type ElectronStore = {
   font_family: {

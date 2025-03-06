@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import type { ElectronAPI } from './../types/index.ts';
+import type { ElectronAPI } from './../types';
 
 contextBridge.exposeInMainWorld('electron', {
   shell: {
