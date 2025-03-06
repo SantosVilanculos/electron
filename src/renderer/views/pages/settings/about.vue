@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { chrome_version, electron_version, node_version, v8_version } = window.ipc.environment;
+const { chrome_version, electron_version, node_version, v8_version } = window.electron.environment;
 </script>
 
 <template>

@@ -12,23 +12,19 @@ export const ipc = () => {
     );
 
     BrowserWindow.getAllWindows().forEach(window => {
-      changedKeys.forEach(key => window.webContents.send('on_did_any_change', key, newValue[key]));
+      changedKeys.forEach(key => window.webContents.send('settings:on_did_any_change', key, newValue[key]));
     });
   });
-  ipcMain.handle('get', (_, key) => settings.get(key));
-  ipcMain.handle('set', (_, key, value) => settings.set(key, value));
-  ipcMain.on('open_in_editor', async event => {
-    try {
-      await settings.openInEditor();
-      event.returnValue = true;
-    } catch (_) {
-      event.returnValue = false;
-    }
-  });
-  ipcMain.handle('clear', _ => settings.clear());
+  ipcMain.handle('settings:all_items', () => settings.store);
+  ipcMain.handle('settings:get_item', (_, key) => settings.get(key));
+  ipcMain.handle('settings:set_item', (_, key, value) => settings.set(key, value));
+  ipcMain.handle('settings:remove_item', (_, key) => settings.delete(key));
+  ipcMain.handle('settings:reset', (_, keys) => settings.reset(...keys));
+  ipcMain.handle('settings:clear', _ => settings.clear());
+  ipcMain.handle('settings:open_in_editor', () => settings.openInEditor());
 
   // ---
-  ipcMain.handle('shell_show_item_in_folder', (_, path) => shell.showItemInFolder(path));
-  ipcMain.handle('shell_open_path', (_, path) => shell.openPath(path));
-  ipcMain.handle('shell_open_external', (_, url) => shell.openExternal(url));
+  ipcMain.handle('shell:show_item_in_folder', (_, path) => shell.showItemInFolder(path));
+  ipcMain.handle('shell:open_path', (_, path) => shell.openPath(path));
+  ipcMain.handle('shell:open_external', (_, url) => shell.openExternal(url));
 };

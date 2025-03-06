@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/stores/settings';
-const { settings } = window.ipc;
+const { settings } = window.electron;
 const { $state } = useSettingsStore();
 </script>
 
@@ -105,7 +105,7 @@ const { $state } = useSettingsStore();
     <div class="flex h-12 items-center justify-end px-5">
       <div class="grid grid-cols-2 grid-rows-1 gap-1.5">
         <button
-          v-on:click="settings.open_in_editor"
+          v-on:click="settings.openInEditor"
           class="group relative isolate inline-flex size-9 items-center justify-center rounded-md bg-white text-sm font-semibold text-zinc-900 shadow-xs ring-1 ring-zinc-300 hover:bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-300 dark:ring-zinc-50/12 dark:hover:bg-zinc-700"
           type="button"
         >

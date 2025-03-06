@@ -16,15 +16,15 @@ export interface ElectronAPI {
     openPath: typeof shell.openPath;
     showItemInFolder: typeof shell.showItemInFolder;
   };
-}
-
-export interface IPC {
   settings: {
-    set: <Key extends keyof ElectronStore>(key: Key, value?: ElectronStore[Key]) => Promise<void>;
-    get: <Key extends keyof ElectronStore>(key: Key) => Promise<ElectronStore[Key]>;
-    open_in_editor: () => Promise<void>;
-    on_did_change: <Key extends keyof ElectronStore>(key: Key, callback: (value: ElectronStore[Key]) => void) => void;
+    allItems: () => Promise<ElectronStore>;
+    getItem: <Key extends keyof ElectronStore>(key: Key) => Promise<ElectronStore[Key]>;
+    setItem: <Key extends keyof ElectronStore>(key: Key, value?: ElectronStore[Key]) => Promise<void>;
+    removeItem: <Key extends keyof ElectronStore>(key: Key) => Promise<void>;
+    reset: <Key extends keyof ElectronStore>(keys: Array<Key>) => Promise<void>;
     clear: () => Promise<void>;
+    openInEditor: () => Promise<boolean>;
+    onDidChange: <Key extends keyof ElectronStore>(key: Key, callback: (value: ElectronStore[Key]) => void) => void;
   };
   environment: {
     readonly mode: string;

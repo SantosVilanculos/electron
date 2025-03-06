@@ -1,34 +1,25 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import type { ElectronAPI, IPC } from './../common/preload.d.ts';
+import type { ElectronAPI } from './../common/preload.d.ts';
 
 contextBridge.exposeInMainWorld('electron', {
   shell: {
-    openExternal: (url, options) => ipcRenderer.invoke('shell_open_external', url, options),
-    openPath: path => ipcRenderer.invoke('shell_open_path', path),
-    showItemInFolder: path => ipcRenderer.invoke('shell_show_item_in_folder', path)
-  }
-  // storage: {
-  //   allItems: () => {},
-  //   getItem: () => {},
-  //   setItem: () => {},
-  //   removeItem: () => {},
-  //   clear: () => {},
-  //   openInEditor: () => {},
-  //   onDidChange: () => {}
-  // }
-} as ElectronAPI);
-
-contextBridge.exposeInMainWorld('ipc', {
+    openExternal: (url, options) => ipcRenderer.invoke('shell:open_external', url, options),
+    openPath: path => ipcRenderer.invoke('shell:open_path', path),
+    showItemInFolder: path => ipcRenderer.invoke('shell:show_item_in_folder', path)
+  },
   settings: {
-    set: (key, value) => ipcRenderer.invoke('set', key, value),
-    get: key => ipcRenderer.invoke('get', key),
-    open_in_editor: () => ipcRenderer.sendSync('open_in_editor'),
-    on_did_change: (key, callback) => {
-      ipcRenderer.on('on_did_any_change', (_, _key, value) => {
+    allItems: () => ipcRenderer.invoke('settings:all_items'),
+    getItem: key => ipcRenderer.invoke('settings:get_item', key),
+    setItem: (key, value) => ipcRenderer.invoke('settings:set_item', key, value),
+    removeItem: key => ipcRenderer.invoke('settings:remove_item', key),
+    reset: keys => ipcRenderer.invoke('settings:reset', keys),
+    clear: () => ipcRenderer.invoke('settings:clear'),
+    openInEditor: () => ipcRenderer.invoke('settings:open_in_editor'),
+    onDidChange: (key, callback) => {
+      ipcRenderer.on('settings:on_did_any_change', (_, _key, value) => {
         if (key === _key) callback(value);
       });
-    },
-    clear: () => ipcRenderer.invoke('clear')
+    }
   },
   environment: {
     mode: process.env.NODE_ENV!,
@@ -38,4 +29,4 @@ contextBridge.exposeInMainWorld('ipc', {
     node_version: process.versions.node,
     v8_version: process.versions.v8
   }
-} as IPC);
+} as ElectronAPI);
