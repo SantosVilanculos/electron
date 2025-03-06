@@ -1,14 +1,14 @@
 import { ref, watch } from 'vue';
 import { defineStore } from 'pinia';
-import type { ElectronStore } from './../../types';
+import type { Store } from './../../types';
 
 export const useSettingsStore = defineStore('config', () => {
   const { settings } = window.electron;
 
-  const always_on_top = ref<ElectronStore['always_on_top']>(false);
-  const font_family = ref<ElectronStore['font_family']>({ monospace: 'GitLab Mono', sans_serif: 'GitLab Sans' });
-  const font_size = ref<ElectronStore['font_size']>(16);
-  const theme_source = ref<ElectronStore['theme_source']>('system');
+  const always_on_top = ref<Store['always_on_top']>(false);
+  const font_family = ref<Store['font_family']>({ monospace: 'GitLab Mono', sans_serif: 'GitLab Sans' });
+  const font_size = ref<Store['font_size']>(16);
+  const theme_source = ref<Store['theme_source']>('system');
 
   watch(always_on_top, async _ => await settings.setItem('always_on_top', _));
   watch(

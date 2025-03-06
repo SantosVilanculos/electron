@@ -1,9 +1,8 @@
+import { nativeTheme, BrowserWindow } from 'electron';
 import ElectronStore from 'electron-store';
-import type { ElectronStore as ElectronStoreType } from './../types';
-import { BrowserWindow } from 'electron/main';
-import { nativeTheme } from 'electron';
+import type { Store } from './../types';
 
-export const settings = new ElectronStore<ElectronStoreType>({
+const store = new ElectronStore<Store>({
   schema: {
     always_on_top: {
       type: 'boolean',
@@ -39,7 +38,7 @@ export const settings = new ElectronStore<ElectronStoreType>({
 });
 
 // ---
-settings.onDidChange('always_on_top', (newValue, _) => {
+store.onDidChange('always_on_top', (newValue, _) => {
   if (newValue === undefined) return;
 
   BrowserWindow.getAllWindows().forEach(window => {
@@ -50,14 +49,16 @@ settings.onDidChange('always_on_top', (newValue, _) => {
 });
 
 // ---
-settings.onDidChange('theme_source', (newValue, _) => {
+store.onDidChange('theme_source', (newValue, _) => {
   if (newValue === undefined || newValue === nativeTheme.themeSource) return;
 
   nativeTheme.themeSource = newValue;
 });
 
 nativeTheme.on('updated', () => {
-  if (settings.get('theme_source') === nativeTheme.themeSource) return;
+  if (store.get('theme_source') === nativeTheme.themeSource) return;
 
-  settings.set('theme_source', nativeTheme.themeSource);
+  store.set('theme_source', nativeTheme.themeSource);
 });
+
+export { store };

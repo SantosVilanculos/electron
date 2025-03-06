@@ -1,6 +1,6 @@
 import type { nativeTheme, shell } from 'electron';
 
-export type ElectronStore = {
+export type Store = {
   font_family: {
     sans_serif: string;
     monospace: string;
@@ -17,14 +17,14 @@ export interface ElectronAPI {
     showItemInFolder: typeof shell.showItemInFolder;
   };
   settings: {
-    allItems: () => Promise<ElectronStore>;
-    getItem: <Key extends keyof ElectronStore>(key: Key) => Promise<ElectronStore[Key]>;
-    setItem: <Key extends keyof ElectronStore>(key: Key, value?: ElectronStore[Key]) => Promise<void>;
-    removeItem: <Key extends keyof ElectronStore>(key: Key) => Promise<void>;
-    reset: <Key extends keyof ElectronStore>(keys: Key[]) => Promise<void>;
+    allItems: () => Promise<Store>;
+    getItem: <Key extends keyof Store>(key: Key) => Promise<Store[Key]>;
+    setItem: <Key extends keyof Store>(key: Key, value?: Store[Key]) => Promise<void>;
+    removeItem: <Key extends keyof Store>(key: Key) => Promise<void>;
+    reset: <Key extends keyof Store>(keys: Key[]) => Promise<void>;
     clear: () => Promise<void>;
     openInEditor: () => Promise<boolean>;
-    onDidChange: <Key extends keyof ElectronStore>(key: Key, callback: (value: ElectronStore[Key]) => void) => void;
+    onDidChange: <Key extends keyof Store>(key: Key, callback: (value: Store[Key]) => void) => void;
     export: () => Promise<boolean>;
   };
   environment: {

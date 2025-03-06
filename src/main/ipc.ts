@@ -1,38 +1,36 @@
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
-import { settings } from './settings';
-import type { ElectronStore } from './../types';
 import { join } from 'node:path';
 import { copyFile } from 'node:fs/promises';
+import { store } from './store';
+import type { Store } from './../types';
 
 export const ipc = () => {
   // ---
-  settings.onDidAnyChange((newValue, oldValue) => {
+  store.onDidAnyChange((newValue, oldValue) => {
     if (newValue === undefined || oldValue === undefined) return;
 
-    const changedKeys = (Object.keys(newValue) as (keyof ElectronStore)[]).filter(
-      key => newValue[key] !== oldValue[key]
-    );
+    const changedKeys = (Object.keys(newValue) as (keyof Store)[]).filter(key => newValue[key] !== oldValue[key]);
 
     BrowserWindow.getAllWindows().forEach(window => {
-      changedKeys.forEach(key => window.webContents.send('settings:on_did_any_change', key, newValue[key]));
+      changedKeys.forEach(key => window.webContents.send('store:on_did_any_change', key, newValue[key]));
     });
   });
-  ipcMain.handle('settings:all_items', () => settings.store);
-  ipcMain.handle('settings:get_item', (_, key) => settings.get(key));
-  ipcMain.handle('settings:set_item', (_, key, value) => settings.set(key, value));
-  ipcMain.handle('settings:remove_item', (_, key) => settings.delete(key));
-  ipcMain.handle('settings:reset', (_, keys) => settings.reset(...keys));
-  ipcMain.handle('settings:clear', _ => settings.clear());
-  ipcMain.handle('settings:open_in_editor', async () => {
+  ipcMain.handle('store:all_items', () => store.store);
+  ipcMain.handle('store:get_item', (_, key) => store.get(key));
+  ipcMain.handle('store:set_item', (_, key, value) => store.set(key, value));
+  ipcMain.handle('store:remove_item', (_, key) => store.delete(key));
+  ipcMain.handle('store:reset', (_, keys) => store.reset(...keys));
+  ipcMain.handle('store:clear', _ => store.clear());
+  ipcMain.handle('store:open_in_editor', async () => {
     try {
-      await settings.openInEditor();
+      await store.openInEditor();
     } catch (_) {
       return false;
     }
 
     return true;
   });
-  ipcMain.handle('settings:export', async () => {
+  ipcMain.handle('store:export', async () => {
     const window = BrowserWindow.getFocusedWindow();
 
     if (window === null) return false;
@@ -44,7 +42,7 @@ export const ipc = () => {
     if (canceled) return false;
 
     try {
-      await copyFile(settings.path, filePath);
+      await copyFile(store.path, filePath);
     } catch (_) {
       return false;
     }

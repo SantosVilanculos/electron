@@ -8,19 +8,19 @@ contextBridge.exposeInMainWorld('electron', {
     showItemInFolder: path => ipcRenderer.invoke('shell:show_item_in_folder', path)
   },
   settings: {
-    allItems: () => ipcRenderer.invoke('settings:all_items'),
-    getItem: key => ipcRenderer.invoke('settings:get_item', key),
-    setItem: (key, value) => ipcRenderer.invoke('settings:set_item', key, value),
-    removeItem: key => ipcRenderer.invoke('settings:remove_item', key),
-    reset: keys => ipcRenderer.invoke('settings:reset', keys),
-    clear: () => ipcRenderer.invoke('settings:clear'),
-    openInEditor: () => ipcRenderer.invoke('settings:open_in_editor'),
+    allItems: () => ipcRenderer.invoke('store:all_items'),
+    getItem: key => ipcRenderer.invoke('store:get_item', key),
+    setItem: (key, value) => ipcRenderer.invoke('store:set_item', key, value),
+    removeItem: key => ipcRenderer.invoke('store:remove_item', key),
+    reset: keys => ipcRenderer.invoke('store:reset', keys),
+    clear: () => ipcRenderer.invoke('store:clear'),
+    openInEditor: () => ipcRenderer.invoke('store:open_in_editor'),
     onDidChange: (key, callback) => {
-      ipcRenderer.on('settings:on_did_any_change', (_, _key, value) => {
+      ipcRenderer.on('store:on_did_any_change', (_, _key, value) => {
         if (key === _key) callback(value);
       });
     },
-    export: () => ipcRenderer.invoke('settings:export')
+    export: () => ipcRenderer.invoke('store:export')
   },
   environment: {
     mode: process.env.NODE_ENV!,

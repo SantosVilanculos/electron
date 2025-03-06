@@ -2,7 +2,7 @@ import { app, BrowserWindow, nativeImage, nativeTheme } from 'electron';
 import { join } from 'node:path';
 import { program } from 'commander';
 import { ipc } from './ipc';
-import { settings } from './settings';
+import { store } from './store';
 
 // ---
 program
@@ -14,12 +14,12 @@ program
   .parse(process.argv, { from: 'electron' });
 
 // ---
-nativeTheme.themeSource = settings.get('theme_source');
+nativeTheme.themeSource = store.get('theme_source');
 
 // ---
 const createWindow = (): void => {
   const window = new BrowserWindow({
-    alwaysOnTop: settings.get('always_on_top'),
+    alwaysOnTop: store.get('always_on_top'),
     autoHideMenuBar: false,
     center: true,
     height: 600,
