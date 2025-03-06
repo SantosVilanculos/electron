@@ -30,7 +30,7 @@ import { RouterLink, RouterView } from 'vue-router';
         <span class="text-nowrap">Home</span>
       </RouterLink>
       <RouterLink
-        v-bind:to="{ name: 'settings' }"
+        v-bind:to="{ name: 'settings.index' }"
         exact-active-class="bg-zinc-300 dark:bg-zinc-800 dark:text-indigo-600"
         class="group relative isolate inline-flex flex-col items-center justify-center gap-y-1.5 rounded-md px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-300"
       >
@@ -56,7 +56,7 @@ import { RouterLink, RouterView } from 'vue-router';
       </RouterLink>
 
       <RouterLink
-        v-bind:to="{ name: 'about' }"
+        v-bind:to="{ name: 'settings.about' }"
         active-class="bg-zinc-300 dark:bg-zinc-800 dark:text-indigo-600"
         class="group relative isolate inline-flex flex-col items-center justify-center gap-y-1.5 rounded-md px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-300"
       >

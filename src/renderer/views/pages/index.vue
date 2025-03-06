@@ -23,7 +23,7 @@ const { shell } = window.electron;
 
         <div class="mt-10 flex justify-center">
           <RouterLink
-            v-bind:to="{ name: 'settings' }"
+            v-bind:to="{ name: 'settings.index' }"
             class="group relative isolate inline-flex cursor-default items-center justify-center gap-1.5 rounded-md bg-white px-3 py-2 font-semibold text-zinc-900 shadow-xs ring-1 ring-zinc-300 hover:bg-zinc-50"
           >
             Continue

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, type RouterOptions } from 'vue-router';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -14,17 +14,29 @@ const router = createRouter({
       children: [
         {
           path: '/',
-          name: 'settings',
-          component: () => import('./../views/pages/settings/index.vue')
+          name: 'settings.index',
+          component: () => import('./../views/pages/settings/index.vue'),
+          meta: {
+            title: 'Settings'
+          }
         },
         {
           path: '/about',
-          name: 'about',
-          component: () => import('./../views/pages/settings/about.vue')
+          name: 'settings.about',
+          component: () => import('./../views/pages/settings/about.vue'),
+          meta: {
+            title: 'About'
+          }
         }
       ]
     }
   ]
+});
+
+router.afterEach((to, from, failure) => {
+  let title = to.meta?.title ?? 'Electron';
+  if (title === document.title) return;
+  document.title = title;
 });
 
 export default router;
