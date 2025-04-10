@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@source './views/**/*.vue';
+
+@font-face {
+  font-family: 'GitLab Sans';
+  font-weight: 100 900;
+  font-style: normal;
+  src: url('./../../node_modules/@gitlab/fonts/gitlab-sans/GitLabSans.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GitLab Sans';
+  font-weight: 100 900;
+  font-style: italic;
+  src: url('./../../node_modules/@gitlab/fonts/gitlab-sans/GitLabSans-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GitLab Mono';
+  font-weight: 100 900;
+  font-style: normal;
+  src: url('./../../node_modules/@gitlab/fonts/gitlab-mono/GitLabMono.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'GitLab Mono';
+  font-weight: 100 900;
+  font-style: italic;
+  src: url('./../../node_modules/@gitlab/fonts/gitlab-mono/GitLabMono-Italic.woff2') format('woff2');
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

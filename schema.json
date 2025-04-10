@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/santosvilanculos/electron/main/schema.json",
+  "title": "",
+  "properties": {
+    "always_on_top": {
+      "description": "",
+      "type": "boolean",
+      "default": false
+    },
+    "color_scheme": {
+      "description": "",
+      "enum": [
+        "system",
+        "light",
+        "dark"
+      ],
+      "default": "system"
+    },
+    "font_family": {
+      "type": "object",
+      "properties": {
+        "monospace": {
+          "description": "",
+          "type": "string"
+        },
+        "sans_serif": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "default": {
+        "monospace": "GitLab Mono",
+        "sans_serif": "GitLab Sans"
+      }
+    }
+  }
+}

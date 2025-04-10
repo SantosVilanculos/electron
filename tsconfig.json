@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json.schemastore.test/tsconfig.json",
+  "files": [],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  "references": [{ "path": "./src/preload" }, { "path": "./src/main" }, { "path": "./src/renderer" }]
+}
