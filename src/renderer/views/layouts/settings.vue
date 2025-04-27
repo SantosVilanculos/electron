@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="py-4">
+  <div class="space-y-5 py-4">
     <div class="grid auto-cols-fr grid-flow-col gap-1.5 px-5 md:mx-auto md:w-full md:max-w-md">
       <RouterLink
         v-bind:to="{ name: 'index' }"
@@ -80,6 +80,8 @@ import { RouterLink, RouterView } from 'vue-router';
         <span class="text-nowrap">About</span>
       </RouterLink>
     </div>
+
+    <hr class="border-zinc-300 dark:border-white/20" />
 
     <div class="">
       <RouterView />

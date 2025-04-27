@@ -29,6 +29,9 @@ export interface ElectronAPI {
   environment: {
     readonly mode: string;
 
+    // readonly application_name: string;
+    // readonly application_version: string;
+
     readonly chrome_version: string;
     readonly electron_version: string;
     readonly node_version: string;
