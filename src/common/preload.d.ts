@@ -25,6 +25,7 @@ export interface ElectronAPI {
     clear: () => Promise<void>;
     openInEditor: () => Promise<boolean>;
     onDidChange: <Key extends keyof ElectronStore>(key: Key, callback: (value: ElectronStore[Key]) => void) => void;
+    export: () => Promise<boolean>;
   };
   environment: {
     readonly mode: string;

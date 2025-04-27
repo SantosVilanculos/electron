@@ -97,7 +97,7 @@ onMounted(async () => {
         <Button v-on:click="electron.settings.openInEditor" aria-label="" title="">
           <File />
         </Button>
-        <Button aria-label="" title="" disabled>
+        <Button v-on:click="electron.settings.export" aria-label="" title="">
           <FileExport />
         </Button>
       </div>

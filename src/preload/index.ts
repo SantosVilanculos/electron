@@ -19,7 +19,8 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.on('settings:on_did_any_change', (_, _key, value) => {
         if (key === _key) callback(value);
       });
-    }
+    },
+    export: () => ipcRenderer.invoke('settings:export')
   },
   environment: {
     mode: process.env.NODE_ENV!,

@@ -1,6 +1,8 @@
-import { BrowserWindow, ipcMain, shell } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { settings } from './settings.ts';
 import { ElectronStore } from './../common/preload.js';
+import { join } from 'node:path';
+import { copyFile } from 'node:fs/promises';
 
 export const ipc = () => {
   // ---
@@ -22,6 +24,25 @@ export const ipc = () => {
   ipcMain.handle('settings:reset', (_, keys) => settings.reset(...keys));
   ipcMain.handle('settings:clear', _ => settings.clear());
   ipcMain.handle('settings:open_in_editor', () => settings.openInEditor());
+  ipcMain.handle('settings:export', async () => {
+    const window = BrowserWindow.getFocusedWindow();
+
+    if (window === null) return false;
+
+    const { canceled, filePath } = await dialog.showSaveDialog(window, {
+      defaultPath: join(app.getPath('home'), 'conf.json')
+    });
+
+    if (canceled) return false;
+
+    try {
+      await copyFile(settings.path, filePath);
+    } catch (_) {
+      return false;
+    }
+
+    return true;
+  });
 
   // ---
   ipcMain.handle('shell:show_item_in_folder', (_, path) => shell.showItemInFolder(path));
