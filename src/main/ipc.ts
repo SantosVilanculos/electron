@@ -23,7 +23,15 @@ export const ipc = () => {
   ipcMain.handle('settings:remove_item', (_, key) => settings.delete(key));
   ipcMain.handle('settings:reset', (_, keys) => settings.reset(...keys));
   ipcMain.handle('settings:clear', _ => settings.clear());
-  ipcMain.handle('settings:open_in_editor', () => settings.openInEditor());
+  ipcMain.handle('settings:open_in_editor', async () => {
+    try {
+      await settings.openInEditor();
+    } catch (_) {
+      return false;
+    }
+
+    return true;
+  });
   ipcMain.handle('settings:export', async () => {
     const window = BrowserWindow.getFocusedWindow();
 
