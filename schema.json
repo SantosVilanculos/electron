@@ -25,6 +25,13 @@
         "sans_serif": "GitLab Sans"
       }
     },
+   "font_size": {
+      "description": "",
+      "type": "integer",
+      "minimum": 0,
+      "default": 16
+    },
+
     "theme_source": {
       "description": "",
       "enum": [
