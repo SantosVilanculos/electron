@@ -28,7 +28,7 @@
     "build:esbuild": "node ./esbuild.js",
     "build": "cross-env NODE_ENV=production concurrently -n=\"vite,esbuild\" -c=\"#93c5fd,#fdba74\" \"npm run build:vite\" \"npm run build:esbuild\"",
     "preview": "npm run build && electron-builder start",
-    "pack": "npm run build && electron-builder build"
+    "package": "npm run build && electron-builder build"
   },
   "dependencies": {
     "commander": "^13.1.0",
