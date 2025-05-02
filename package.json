@@ -23,10 +23,10 @@
     "postinstall": "electron-builder install-app-deps",
     "format": "prettier --write ./src/",
     "start": "npm run build && electron ./",
-    "dev": "cross-env NODE_ENV=development concurrently -n=\"vite,esbuild,electron\" -c=\"#BD34FE,#FFCF00,#A2ECFB\" \"vite\" \"nodemon -e 'js,ts' -x 'node ./esbuild.config.js' -w './esbuild.config.js' -w './src/preload' -w './src/main'\" \"nodemon -e 'mjs,cjs' -x 'electron ./' -w './dist/preload.cjs' -w './dist/main.mjs'\"",
+    "dev": "cross-env NODE_ENV=development concurrently -n=\"vite,esbuild,electron\" -c=\"#93c5fd,#fdba74,#fb7185\" \"vite\" \"node ./esbuild.js -w\" \"nodemon -e 'mjs,cjs' -x 'electron ./' -w './dist/preload.cjs' -w './dist/main.mjs'\"",
     "build:vite": "vite build",
-    "build:esbuild": "node ./esbuild.config.js",
-    "build": "cross-env NODE_ENV=production concurrently -n=\"vite,esbuild\" -c=\"#BD34FE,#FFCF00\" \"npm run build:vite\" \"npm run build:esbuild\"",
+    "build:esbuild": "node ./esbuild.js",
+    "build": "cross-env NODE_ENV=production concurrently -n=\"vite,esbuild\" -c=\"#93c5fd,#fdba74\" \"npm run build:vite\" \"npm run build:esbuild\"",
     "preview": "npm run build && electron-builder start",
     "pack": "npm run build && electron-builder build"
   },
