@@ -1,4 +1,4 @@
-import type { ElectronAPI } from './../common/preload';
+import type { ElectronAPI } from './../types';
 
 declare global {
   interface FontData {

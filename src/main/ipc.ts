@@ -1,6 +1,6 @@
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { settings } from './settings.ts';
-import { ElectronStore } from './../common/preload.js';
+import type { ElectronStore } from './../types/index.ts';
 import { join } from 'node:path';
 import { copyFile } from 'node:fs/promises';
 
