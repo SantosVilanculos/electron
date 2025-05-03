@@ -34,6 +34,9 @@ contextBridge.exposeInMainWorld('electron', {
     applicationName: ipcRenderer.invoke('app:name'),
     applicationVersion: ipcRenderer.invoke('app:version'),
 
+    ownerOrAuthorName: ipcRenderer.invoke('app:owner_or_author_name'),
+    ownerOrAuthorUrl: ipcRenderer.invoke('app:owner_or_author_url'),
+
     chromeVersion: process.versions.chrome,
     electronVersion: process.versions.electron,
     nodeVersion: process.versions.node,

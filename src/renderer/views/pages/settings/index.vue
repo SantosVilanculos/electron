@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { File, FileExport, Rotate } from '@/views/components/undefined';
+import { File, FileExport, Rotate } from '@/views/components/svg';
 import { Button, Checkbox, Input, Radio, Select } from '@/views/components/ui';
 import { onMounted, ref } from 'vue';
 import { useSettingsStore } from '@/stores/settings';

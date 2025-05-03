@@ -39,6 +39,9 @@ export interface ElectronAPI {
     readonly applicationName: Promise<string>;
     readonly applicationVersion: Promise<string>;
 
+    readonly ownerOrAuthorName: Promise<string>;
+    readonly ownerOrAuthorUrl: Promise<string>;
+
     readonly chromeVersion: string;
     readonly electronVersion: string;
     readonly nodeVersion: string;

@@ -1,6 +1,18 @@
 <script setup lang="ts">
+import { onBeforeMount, ref } from 'vue';
 import { RouterLink } from 'vue-router';
-const { shell } = window.electron;
+const { shell, environment } = window.electron;
+
+const name = ref<string>();
+
+const openUrl = async () => {
+  const url = await environment.ownerOrAuthorUrl;
+  await shell.openExternal(url);
+};
+
+onBeforeMount(async () => {
+  name.value = await environment.ownerOrAuthorName;
+});
 </script>
 
 <template>
@@ -16,7 +28,7 @@ const { shell } = window.electron;
           />
         </div>
 
-        <p class="text-center text-zinc-600 dark:text-zinc-400">
+        <p class="text-center text-zinc-600 italic dark:text-zinc-400">
           A modern, feature-rich scaffolding for building cross-platform desktop applications with Electron, Vue, and
           TypeScript.
         </p>
@@ -54,10 +66,10 @@ const { shell } = window.electron;
         <p class="text-center text-zinc-600 dark:text-zinc-400">
           © 2025
           <a
-            v-on:click.prevent="shell.openExternal('https://github.com/santosvilanculos')"
+            href="#"
+            v-on:click.prevent="openUrl"
             class="cursor-default font-medium text-indigo-600 underline hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
-            href="https://github.com/santosvilanculos"
-            >Santos Vilanculos</a
+            >{{ name }}</a
           >. All rights reserved.
         </p>
       </div>

@@ -41,6 +41,6 @@
   }
 }
 
-/* * div { */
-/*   outline: 1px solid red; */
-/* } */
+:root {
+  font-feature-settings: 'liga' 1 'calt' 1;
+}
