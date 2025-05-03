@@ -12,7 +12,6 @@ program
   .allowUnknownOption(true)
   .allowExcessArguments(true)
   .parse(process.argv, { from: 'electron' });
-
 // </>
 
 let window: BrowserWindow | undefined;
@@ -75,7 +74,18 @@ const createWindow = (): void => {
   window.setMenuBarVisibility(false);
 
   if (process.env.NODE_ENV === 'development') {
-    window.loadURL('http://127.0.0.1:5173');
+    window.loadURL('http://127.0.0.1:5173').catch(async reason => {
+      if (window === undefined) return;
+
+      const { response } = await dialog.showMessageBox(window, {
+        message: String(reason),
+        type: 'error',
+        buttons: ['Reload', 'Close'],
+        title: 'Failed to load URL'
+      });
+
+      if (response === 0) window.reload();
+    });
   } else {
     window.loadFile(join(app.getAppPath(), '/dist/renderer/index.html'));
   }
