@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineModel, defineOptions } from 'vue';
-
 defineOptions({ inheritAttrs: false });
 
 const model = defineModel();
