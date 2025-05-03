@@ -6,9 +6,9 @@ import { store } from './store';
 
 // <>
 program
-  .name('electron')
-  .version('0.0.1')
-  .addHelpText('before', 'Electron Starter Kit 0.0.1\n')
+  .name(app.getName())
+  .version(app.getVersion())
+  .addHelpText('before', `Electron Starter Kit ${app.getVersion()}\n`)
   .allowUnknownOption(true)
   .allowExcessArguments(true)
   .parse(process.argv, { from: 'electron' });
