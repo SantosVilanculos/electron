@@ -1,10 +1,10 @@
-import { app, BrowserWindow, nativeImage, nativeTheme } from 'electron';
-import { join } from 'node:path';
+import { app, BrowserWindow, dialog, nativeImage, nativeTheme } from 'electron';
+import { join, resolve } from 'node:path';
 import { program } from 'commander';
 import { ipc } from './ipc';
 import { store } from './store';
 
-// ---
+// <>
 program
   .name('electron')
   .version('0.0.1')
@@ -13,12 +13,48 @@ program
   .allowExcessArguments(true)
   .parse(process.argv, { from: 'electron' });
 
-// ---
-nativeTheme.themeSource = store.get('theme_source');
+// </>
 
-// ---
+let window: BrowserWindow | undefined;
+
+// <>
+if (process.defaultApp) {
+  if (process.argv.length >= 2) {
+    app.setAsDefaultProtocolClient('electron', process.execPath, [resolve(process.argv[1])]);
+  }
+} else {
+  app.setAsDefaultProtocolClient('electron');
+}
+
+if (app.requestSingleInstanceLock()) {
+  app.on('second-instance', (event, argv, workingDirectory) => {
+    if (window) {
+      if (window.isMinimized()) window.restore();
+      window.focus();
+    }
+
+    dialog.showErrorBox('Welcome Back', `You arrived from: ${argv.pop()}`);
+  });
+} else {
+  app.quit();
+}
+
+app.on('open-file', (event, path) => {
+  dialog.showErrorBox('Welcome Back', `You arrived from: ${path}`);
+});
+
+app.on('open-url', (event, url) => {
+  dialog.showErrorBox('Welcome Back', `You arrived from: ${url}`);
+});
+// </>
+
+// <>
+nativeTheme.themeSource = store.get('theme_source');
+// </>
+
+// <>
 const createWindow = (): void => {
-  const window = new BrowserWindow({
+  window = new BrowserWindow({
     alwaysOnTop: store.get('always_on_top'),
     autoHideMenuBar: false,
     center: true,
@@ -60,3 +96,4 @@ app.whenReady().then((): void => {
 app.on('window-all-closed', (): void => {
   if (process.platform !== 'darwin') app.quit();
 });
+// </>
