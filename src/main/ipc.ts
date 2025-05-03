@@ -17,12 +17,13 @@ export const ipc = () => {
       changedKeys.forEach(key => window.webContents.send('store:on_did_any_change', key, newValue[key]));
     });
   });
-  ipcMain.handle('store:all_items', () => store.store);
-  ipcMain.handle('store:get_item', (_, key) => store.get(key));
-  ipcMain.handle('store:set_item', (_, key, value) => store.set(key, value));
-  ipcMain.handle('store:remove_item', (_, key) => store.delete(key));
+  ipcMain.handle('store:all', () => store.store);
+  ipcMain.handle('store:get', (_, key) => store.get(key));
+  ipcMain.handle('store:has', (_, key) => store.has(key));
+  ipcMain.handle('store:set', (_, key, value) => store.set(key, value));
+  ipcMain.handle('store:remove', (_, key) => store.delete(key));
   ipcMain.handle('store:reset', (_, keys) => store.reset(...keys));
-  ipcMain.handle('store:clear', _ => store.clear());
+  ipcMain.handle('store:clear', () => store.clear());
   ipcMain.handle('store:open_in_editor', async () => {
     try {
       await store.openInEditor();

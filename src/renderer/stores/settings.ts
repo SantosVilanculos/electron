@@ -10,21 +10,17 @@ export const useSettingsStore = defineStore('settings', () => {
   const font_size = ref<Store['font_size']>(16);
   const theme_source = ref<Store['theme_source']>('system');
 
-  watch(always_on_top, async _ => await store.setItem('always_on_top', _));
-  watch(
-    font_family,
-    async ({ monospace, sans_serif }) => await store.setItem('font_family', { monospace, sans_serif }),
-    {
-      deep: true
-    }
-  );
-  watch(font_size, async _ => await store.setItem('font_size', _));
-  watch(theme_source, async _ => await store.setItem('theme_source', _));
+  watch(always_on_top, async _ => await store.set('always_on_top', _));
+  watch(font_family, async ({ monospace, sans_serif }) => await store.set('font_family', { monospace, sans_serif }), {
+    deep: true
+  });
+  watch(font_size, async _ => await store.set('font_size', _));
+  watch(theme_source, async _ => await store.set('theme_source', _));
 
-  store.getItem('always_on_top').then(_ => (always_on_top.value = _));
-  store.getItem('font_family').then(_ => (font_family.value = _));
-  store.getItem('font_size').then(_ => (font_size.value = _));
-  store.getItem('theme_source').then(_ => (theme_source.value = _));
+  store.get('always_on_top').then(_ => (always_on_top.value = _));
+  store.get('font_family').then(_ => (font_family.value = _));
+  store.get('font_size').then(_ => (font_size.value = _));
+  store.get('theme_source').then(_ => (theme_source.value = _));
 
   store.onDidChange('always_on_top', _ => (always_on_top.value = _));
   store.onDidChange('font_family', _ => (font_family.value = _));

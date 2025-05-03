@@ -17,10 +17,11 @@ export interface ElectronAPI {
     showItemInFolder: typeof shell.showItemInFolder;
   };
   store: {
-    allItems: () => Promise<Store>;
-    getItem: <Key extends keyof Store>(key: Key) => Promise<Store[Key]>;
-    setItem: <Key extends keyof Store>(key: Key, value?: Store[Key]) => Promise<void>;
-    removeItem: <Key extends keyof Store>(key: Key) => Promise<void>;
+    all: () => Promise<Store>;
+    get: <Key extends keyof Store>(key: Key) => Promise<Store[Key]>;
+    has: <Key extends keyof Store>(key: Key) => Promise<boolean>;
+    set: <Key extends keyof Store>(key: Key, value?: Store[Key]) => Promise<void>;
+    remove: <Key extends keyof Store>(key: Key) => Promise<void>;
     reset: <Key extends keyof Store>(keys: Key[]) => Promise<void>;
     clear: () => Promise<void>;
     openInEditor: () => Promise<boolean>;

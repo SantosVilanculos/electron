@@ -8,10 +8,11 @@ contextBridge.exposeInMainWorld('electron', {
     showItemInFolder: path => ipcRenderer.invoke('shell:show_item_in_folder', path)
   },
   store: {
-    allItems: () => ipcRenderer.invoke('store:all_items'),
-    getItem: key => ipcRenderer.invoke('store:get_item', key),
-    setItem: (key, value) => ipcRenderer.invoke('store:set_item', key, value),
-    removeItem: key => ipcRenderer.invoke('store:remove_item', key),
+    all: () => ipcRenderer.invoke('store:all'),
+    get: key => ipcRenderer.invoke('store:get', key),
+    has: key => ipcRenderer.invoke('store:set', key),
+    set: (key, value) => ipcRenderer.invoke('store:set', key, value),
+    remove: key => ipcRenderer.invoke('store:remove', key),
     reset: keys => ipcRenderer.invoke('store:reset', keys),
     clear: () => ipcRenderer.invoke('store:clear'),
     openInEditor: () => ipcRenderer.invoke('store:open_in_editor'),
