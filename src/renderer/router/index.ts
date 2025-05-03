@@ -6,7 +6,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      component: () => import('./../views/pages/index.vue')
+      component: () => import('./../views/pages/index.vue'),
+      meta: {
+        title: 'Welcome'
+      }
     },
     {
       path: '/settings',
@@ -34,8 +37,10 @@ const router = createRouter({
 });
 
 router.afterEach((to, from, failure) => {
-  let title = to.meta?.title ?? 'Electron';
+  const { title } = to.meta;
+
   if (title === document.title) return;
+
   document.title = title;
 });
 
