@@ -16,7 +16,7 @@ export interface ElectronAPI {
     openPath: typeof shell.openPath;
     showItemInFolder: typeof shell.showItemInFolder;
   };
-  settings: {
+  store: {
     allItems: () => Promise<Store>;
     getItem: <Key extends keyof Store>(key: Key) => Promise<Store[Key]>;
     setItem: <Key extends keyof Store>(key: Key, value?: Store[Key]) => Promise<void>;

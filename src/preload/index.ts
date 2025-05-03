@@ -7,7 +7,7 @@ contextBridge.exposeInMainWorld('electron', {
     openPath: path => ipcRenderer.invoke('shell:open_path', path),
     showItemInFolder: path => ipcRenderer.invoke('shell:show_item_in_folder', path)
   },
-  settings: {
+  store: {
     allItems: () => ipcRenderer.invoke('store:all_items'),
     getItem: key => ipcRenderer.invoke('store:get_item', key),
     setItem: (key, value) => ipcRenderer.invoke('store:set_item', key, value),

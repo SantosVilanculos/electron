@@ -3,22 +3,22 @@ import { onBeforeMount } from 'vue';
 import { RouterView } from 'vue-router';
 
 onBeforeMount(async () => {
-  const { settings } = window.electron;
+  const { store } = window.electron;
   const { style } = document.documentElement;
 
-  const [font_family, font_size] = await Promise.all([settings.getItem('font_family'), settings.getItem('font_size')]);
+  const [font_family, font_size] = await Promise.all([store.getItem('font_family'), store.getItem('font_size')]);
 
   //
   style.setProperty('--font-mono', font_family.monospace);
   style.setProperty('--font-sans', font_family.sans_serif);
-  settings.onDidChange('font_family', ({ monospace, sans_serif }) => {
+  store.onDidChange('font_family', ({ monospace, sans_serif }) => {
     style.setProperty('--font-mono', monospace);
     style.setProperty('--font-sans', sans_serif);
   });
 
   //
   style.setProperty('font-size', `${font_size}px`);
-  settings.onDidChange('font_size', font_size => style.setProperty('font-size', `${font_size}px`));
+  store.onDidChange('font_size', font_size => style.setProperty('font-size', `${font_size}px`));
 });
 </script>
 
