@@ -25,9 +25,17 @@ contextBridge.exposeInMainWorld('electron', {
   environment: {
     mode: process.env.NODE_ENV!,
 
-    chrome_version: process.versions.chrome,
-    electron_version: process.versions.electron,
-    node_version: process.versions.node,
-    v8_version: process.versions.v8
+    platform: process.platform,
+    arch: process.arch,
+    locale: ipcRenderer.invoke('locale'),
+
+    applicationPath: ipcRenderer.invoke('app:path'),
+    applicationName: ipcRenderer.invoke('app:name'),
+    applicationVersion: ipcRenderer.invoke('app:version'),
+
+    chromeVersion: process.versions.chrome,
+    electronVersion: process.versions.electron,
+    nodeVersion: process.versions.node,
+    v8Version: process.versions.v8
   }
 } as ElectronAPI);

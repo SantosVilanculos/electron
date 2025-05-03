@@ -3,6 +3,8 @@ import { join } from 'node:path';
 import { copyFile } from 'node:fs/promises';
 import { store } from './store';
 import type { Store } from './../types';
+import { version } from './../../package.json';
+import { productName } from './../../electron-builder.json';
 
 export const ipc = () => {
   // ---
@@ -49,6 +51,14 @@ export const ipc = () => {
 
     return true;
   });
+
+  // ---
+  ipcMain.handle('locale', () => app.getSystemLocale());
+
+  // ---
+  ipcMain.handle('app:name', () => productName);
+  ipcMain.handle('app:version', () => version);
+  ipcMain.handle('app:path', () => app.getAppPath());
 
   // ---
   ipcMain.handle('shell:show_item_in_folder', (_, path) => shell.showItemInFolder(path));

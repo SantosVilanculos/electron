@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { chrome_version, electron_version, node_version, v8_version } = window.electron.environment;
+const { chromeVersion, electronVersion, nodeVersion, v8Version } = window.electron.environment;
 </script>
 
 <template>
@@ -8,25 +8,25 @@ const { chrome_version, electron_version, node_version, v8_version } = window.el
       <div class="flex h-12 items-center justify-between">
         <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">Chromium version</label>
 
-        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ chrome_version }}</div>
+        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ chromeVersion }}</div>
       </div>
 
       <div class="flex h-12 items-center justify-between">
         <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">Electron version</label>
 
-        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ electron_version }}</div>
+        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ electronVersion }}</div>
       </div>
 
       <div class="flex h-12 items-center justify-between">
         <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">Node version</label>
 
-        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ node_version }}</div>
+        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ nodeVersion }}</div>
       </div>
 
       <div class="flex h-12 items-center justify-between">
         <label class="text-sm/6 text-nowrap text-zinc-600 dark:text-zinc-300" for="">V8 version</label>
 
-        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ v8_version }}</div>
+        <div class="font-mono text-zinc-600 dark:text-zinc-300">{{ v8Version }}</div>
       </div>
     </div>
   </div>

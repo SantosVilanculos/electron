@@ -30,12 +30,17 @@ export interface ElectronAPI {
   environment: {
     readonly mode: string;
 
-    // readonly application_name: string;
-    // readonly application_version: string;
+    readonly platform: string;
+    readonly arch: string;
+    readonly locale: Promise<string>;
 
-    readonly chrome_version: string;
-    readonly electron_version: string;
-    readonly node_version: string;
-    readonly v8_version: string;
+    readonly applicationPath: Promise<string>;
+    readonly applicationName: Promise<string>;
+    readonly applicationVersion: Promise<string>;
+
+    readonly chromeVersion: string;
+    readonly electronVersion: string;
+    readonly nodeVersion: string;
+    readonly v8Version: string;
   };
 }

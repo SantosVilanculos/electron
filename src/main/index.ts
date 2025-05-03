@@ -3,20 +3,21 @@ import { join, resolve } from 'node:path';
 import { program } from 'commander';
 import { ipc } from './ipc';
 import { store } from './store';
+import { name, version } from './../../package.json';
+import { productName } from './../../electron-builder.json';
 
-// <>
+// ---
 program
-  .name(app.getName())
-  .version(app.getVersion())
-  .addHelpText('before', `Electron Starter Kit ${app.getVersion()}\n`)
+  .name(name)
+  .version(version)
+  .addHelpText('before', `${productName} ${version}\n`)
   .allowUnknownOption(true)
   .allowExcessArguments(true)
   .parse(process.argv, { from: 'electron' });
-// </>
 
 let window: BrowserWindow | undefined;
 
-// <>
+// ---
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
     app.setAsDefaultProtocolClient('electron', process.execPath, [resolve(process.argv[1])]);
@@ -45,13 +46,11 @@ app.on('open-file', (event, path) => {
 app.on('open-url', (event, url) => {
   dialog.showErrorBox('Welcome Back', `You arrived from: ${url}`);
 });
-// </>
 
-// <>
+// ---
 nativeTheme.themeSource = store.get('theme_source');
-// </>
 
-// <>
+// ---
 const createWindow = (): void => {
   window = new BrowserWindow({
     alwaysOnTop: store.get('always_on_top'),
@@ -62,6 +61,7 @@ const createWindow = (): void => {
       join(app.getAppPath(), process.env.NODE_ENV === 'development' ? '/build/icon.png' : '/dist/icon.png')
     ),
     show: true,
+    title: productName,
     width: 800,
     webPreferences: {
       preload:
@@ -106,4 +106,3 @@ app.whenReady().then((): void => {
 app.on('window-all-closed', (): void => {
   if (process.platform !== 'darwin') app.quit();
 });
-// </>
