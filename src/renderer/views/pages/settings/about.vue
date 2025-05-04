@@ -24,9 +24,13 @@ onBeforeMount(async () => {
 
 <template>
   <div class="mx-auto w-[24rem] space-y-6 divide-y divide-white/10">
-    <div class="grid auto-cols-[6rem_1fr] grid-flow-col items-center gap-2 pb-4">
-      <img class="aspect-square object-contain" src="./../../../assets/icon.png" alt="" />
-      <div class="space-y-1.5">
+    <div class="grid auto-cols-[6rem_1fr] grid-flow-col items-center gap-4 pb-4">
+      <img
+        class="aspect-square overflow-hidden rounded-sm border border-black/10 object-cover dark:border-white/20"
+        src="./../../../assets/icon.png"
+        alt=""
+      />
+      <div class="space-y-1.5 text-zinc-600 dark:text-zinc-300">
         <p v-text="name"></p>
         <p v-text="version"></p>
         <p>© {{ author }}</p>
