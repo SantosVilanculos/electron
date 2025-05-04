@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- No changes yet.
+
+## [0.0.0] - 2025-05-04
+
 ### Added
 
 - Integrated Prettier, ESBuild and Typescript.
@@ -14,4 +18,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Font family, Font Size, Window state (Always on top), Color scheme (Light/Dark) app configuration.
 - Added this CHANGELOG file.
 
-[unreleased]: https://github.com/santosvilanculos/electron/commits/main
+[unreleased]: https://github.com/rokugu/rokugu/compare/v0.0.0...HEAD
+[0.0.0]: https://github.com/rokugu/rokugu/releases/tag/v0.0.0
